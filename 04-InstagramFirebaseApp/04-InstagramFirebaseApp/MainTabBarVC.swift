@@ -18,13 +18,20 @@ class MainTabBarVC: UITabBarController {
         //user profile
         let userProfileLayout = UICollectionViewFlowLayout()
         let userProfileVC = UserProfileVC(collectionViewLayout: userProfileLayout)
+        let userProfileVCNav = UINavigationController(rootViewController: userProfileVC)
+        
+        userProfileVCNav.tabBarItem.image = #imageLiteral(resourceName: "profile_unselected")
+        userProfileVCNav.tabBarItem.selectedImage = #imageLiteral(resourceName: "profile_selected")
+        
+        UITabBar.appearance().tintColor = .black
         
         
         
+        viewControllers = [userProfileVCNav, UIViewController()]
         
-        viewControllers = [userProfileVC, UIViewController()]
-        
-    }
+    }//End viewDidLoad
+    
+    
     
     
 }// End Of Tab Bar VC

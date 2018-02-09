@@ -17,6 +17,7 @@
 		B834988F201F864700268F0F /*  SignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B834988E201F864700268F0F /*  SignupVC.swift */; };
 		B8349891201FBDAF00268F0F /* UserProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8349890201FBDAF00268F0F /* UserProfileVC.swift */; };
 		B8349893201FC71900268F0F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8349892201FC71900268F0F /* GoogleService-Info.plist */; };
+		B8BA00A6202C9F1D00CC3400 /* UserProfileHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BA00A5202C9F1D00CC3400 /* UserProfileHeaderCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		B834988E201F864700268F0F /*  SignupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " SignupVC.swift"; sourceTree = "<group>"; };
 		B8349890201FBDAF00268F0F /* UserProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileVC.swift; sourceTree = "<group>"; };
 		B8349892201FC71900268F0F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B8BA00A5202C9F1D00CC3400 /* UserProfileHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeaderCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 		B8349876201F835F00268F0F /* 04-InstagramFirebaseApp */ = {
 			isa = PBXGroup;
 			children = (
+				B8BA00A4202C9ED600CC3400 /* UserProfileVC */,
 				B834988B201F846500268F0F /* Login */,
 				B8349877201F835F00268F0F /* AppDelegate.swift */,
 				B834987B201F836000268F0F /* Main.storyboard */,
@@ -93,7 +96,6 @@
 				B8349880201F836000268F0F /* LaunchScreen.storyboard */,
 				B8349883201F836000268F0F /* Info.plist */,
 				B8349889201F83F100268F0F /* MainTabBarVC.swift */,
-				B8349890201FBDAF00268F0F /* UserProfileVC.swift */,
 				B8349892201FC71900268F0F /* GoogleService-Info.plist */,
 			);
 			path = "04-InstagramFirebaseApp";
@@ -106,6 +108,15 @@
 				B834988E201F864700268F0F /*  SignupVC.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		B8BA00A4202C9ED600CC3400 /* UserProfileVC */ = {
+			isa = PBXGroup;
+			children = (
+				B8349890201FBDAF00268F0F /* UserProfileVC.swift */,
+				B8BA00A5202C9F1D00CC3400 /* UserProfileHeaderCell.swift */,
+			);
+			path = UserProfileVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,6 +256,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B834988A201F83F100268F0F /* MainTabBarVC.swift in Sources */,
+				B8BA00A6202C9F1D00CC3400 /* UserProfileHeaderCell.swift in Sources */,
 				B834988F201F864700268F0F /*  SignupVC.swift in Sources */,
 				B834988D201F85EE00268F0F /* LoginVC.swift in Sources */,
 				B8349878201F835F00268F0F /* AppDelegate.swift in Sources */,

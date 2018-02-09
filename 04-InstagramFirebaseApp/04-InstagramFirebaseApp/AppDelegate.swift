@@ -20,10 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         
-        let loginVC = LoginVC()
-        window?.rootViewController = loginVC
+//        let loginVC = LoginVC()
+//        let loginNavController = UINavigationController(rootViewController: loginVC)
+//        window?.rootViewController = loginNavController
         
-//        window?.rootViewController = MainTabBarVC()
+        window?.rootViewController = MainTabBarVC()
         
         
         

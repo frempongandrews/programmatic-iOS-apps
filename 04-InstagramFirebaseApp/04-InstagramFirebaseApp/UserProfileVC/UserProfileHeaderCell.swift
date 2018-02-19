@@ -11,10 +11,68 @@ import UIKit
 
 class UserProfileHeaderCell: UICollectionViewCell {
     
+    var user: User?{
+        
+        didSet{
+            //get user
+            
+            
+            guard let user = user else { return }
+                
+            
+            
+            
+            //set image
+            guard let userProfileImageUrl = user.userProfileImageUrl else { return }
+            downloadImage(from: userProfileImageUrl)
+            
+            
+            //set name
+            guard let username = user.username else { return }
+            let attributedText = NSMutableAttributedString(string: username, attributes: [NSAttributedStringKey.font : UIFont.boldSystemFont(ofSize: 16)])
+            self.userProfileNameLabel.attributedText = attributedText
+                
+            
+            
+            
+            
+            
+            
+        }
+        
+        
+    }
+    
+    
+    fileprivate func downloadImage (from url: String) {
+        
+        guard let url = URL(string: url) else { return }
+        
+        URLSession.shared.dataTask(with: url) { (data, response, err) in
+            
+            if let err = err {
+                print("Error while downloading image ", err)
+                return
+            }
+            
+            guard let data = data else { return }
+            
+            let downloadedImage = UIImage(data: data)
+            
+            
+            DispatchQueue.main.async {
+                
+                self.userProfileImageView.image = downloadedImage
+            }
+            
+        }.resume()
+    }
+    
+    
     let userProfileImageView: UIImageView = {
        
         let iv = UIImageView()
-        iv.backgroundColor = .red
+//        iv.backgroundColor = .red
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.layer.cornerRadius = 40
@@ -68,8 +126,7 @@ class UserProfileHeaderCell: UICollectionViewCell {
     let userProfileNameLabel: UILabel = {
         
         let label = UILabel()
-        let attributedText = NSMutableAttributedString(string: "NightLife", attributes: [NSAttributedStringKey.font : UIFont.boldSystemFont(ofSize: 16)])
-        label.attributedText = attributedText
+        
         
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -88,7 +145,24 @@ class UserProfileHeaderCell: UICollectionViewCell {
     //TODO: 3 view options buttons
     fileprivate func createViewOptionButton (icon: UIImage) -> UIButton {
         
+        let button: UIButton = {
+           
+            let btn = UIButton(type: .system)
+            btn.setImage(icon, for: .normal)
+            btn.clipsToBounds = true
+            btn.contentMode = .scaleAspectFill
+            
+            btn.translatesAutoresizingMaskIntoConstraints = false
+            return btn
+        }()
+        
+        return button
     }
+    
+    lazy var galleryViewButton = self.createViewOptionButton(icon: #imageLiteral(resourceName: "grid"))
+    lazy var listViewButton = self.createViewOptionButton(icon: #imageLiteral(resourceName: "list"))
+    lazy var favouriteViewButton = self.createViewOptionButton(icon: #imageLiteral(resourceName: "ribbon"))
+    
     
     private func setupHeader () {
         
@@ -100,6 +174,9 @@ class UserProfileHeaderCell: UICollectionViewCell {
         addSubview(editProfileButton)
         addSubview(userProfileNameLabel)
         addSubview(divider)
+        addSubview(galleryViewButton)
+        addSubview(listViewButton)
+        addSubview(favouriteViewButton)
        
         
         userProfileImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 20).isActive = true
@@ -131,9 +208,19 @@ class UserProfileHeaderCell: UICollectionViewCell {
         divider.rightAnchor.constraint(equalTo: rightAnchor, constant: 0).isActive = true
         divider.topAnchor.constraint(equalTo: userProfileNameLabel.bottomAnchor, constant: 20).isActive = true
         
-        let viewOptionsContainer = UIStackView(arrangedSubviews: <#T##[UIView]#>)
-        addSubview(viewOptionsContainer)
+        let viewOptionsContainer = UIStackView(arrangedSubviews: [galleryViewButton, listViewButton, favouriteViewButton])
         viewOptionsContainer.translatesAutoresizingMaskIntoConstraints = false
+        viewOptionsContainer.distribution = .fillEqually
+        viewOptionsContainer.axis = .horizontal
+        viewOptionsContainer.spacing = 10
+        addSubview(viewOptionsContainer)
+        
+        viewOptionsContainer.leftAnchor.constraint(equalTo: leftAnchor, constant: 0).isActive = true
+        viewOptionsContainer.rightAnchor.constraint(equalTo: rightAnchor, constant: 0).isActive = true
+        viewOptionsContainer.topAnchor.constraint(equalTo: divider.bottomAnchor, constant: 15).isActive = true
+        
+        
+        
     }
     
     
@@ -153,6 +240,8 @@ class UserProfileHeaderCell: UICollectionViewCell {
 
 
 
+
+    
 
 
 

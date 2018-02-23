@@ -184,17 +184,19 @@ class SignupVC: UIViewController, UITextFieldDelegate, UIImagePickerControllerDe
                     //let userDictionary = [userId: userDetails]
                     
                     //get user with specific uid
-                    Database.database().reference().child("users").child(userId).observeSingleEvent(of: .value, with: { (snapshot) in
+                    Database.database().reference().child("users").child(userId).updateChildValues(userDetails, withCompletionBlock: { (err, ref) in
                         
-                        snapshot.ref.updateChildValues(userDetails)
+                        if let err = err {
+                            print("Error while saving user details", err)
+                            return
+                        }
                         
+                        print("Successfully saved user details to database")
                         
-                        //show green bar confirming it
-                        self.confirmSignup()
+                        let mainTabBarVC = UIApplication.shared.keyWindow?.rootViewController as! MainTabBarVC
+                        mainTabBarVC.setupViewControllers()
+                        self.dismiss(animated: true, completion: nil)
                         
-                        
-                    }, withCancel: { (err) in
-                        print("An error has occurred", err)
                     })
                     
                 }
@@ -202,11 +204,9 @@ class SignupVC: UIViewController, UITextFieldDelegate, UIImagePickerControllerDe
             })
         }
         
-        //clear text fields
         
-        emailTextField.text = ""
-        usernameTextField.text = ""
-        passwordTextField.text = ""
+        
+        
         
     }
     

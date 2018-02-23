@@ -93,7 +93,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     
     @objc func onLogin () {
         print("onlogin")
-        guard let email = emailTextField.text else { return }
+        guard let email = (emailTextField.text)?.replacingOccurrences(of: " ", with: "") else { return }
         guard let password = passwordTextField.text else { return }
         Auth.auth().signIn(withEmail: email, password: password) { (user, err) in
             
@@ -102,12 +102,10 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                 return
             }
             
-//            let mainTabBarVC = MainTabBarVC()
-//            self.present(mainTabBarVC, animated: true, completion: nil)
-            let rootVC = UIApplication.shared.keyWindow?.rootViewController as! MainTabBarVC
-            UIApplication.shared.keyWindow?.rootViewController = rootVC
-             let userProfileVC = rootVC.viewControllers?[0]
-                self.dismiss(animated: true, completion: nil)
+            
+            let mainTabBarVC = UIApplication.shared.keyWindow?.rootViewController as! MainTabBarVC
+            mainTabBarVC.setupViewControllers()
+            self.dismiss(animated: true, completion: nil)
                 
             
             

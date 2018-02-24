@@ -19,6 +19,7 @@
 		B8349893201FC71900268F0F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8349892201FC71900268F0F /* GoogleService-Info.plist */; };
 		B8521F9D203BAC2E00BE5413 /* PhotoSelectorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8521F9C203BAC2E00BE5413 /* PhotoSelectorVC.swift */; };
 		B8A2C6B020405DBD001A8A05 /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A2C6AF20405DBD001A8A05 /* PhotoSelectorCell.swift */; };
+		B8A2C6B2204102FD001A8A05 /* PhotoSelectorHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A2C6B1204102FD001A8A05 /* PhotoSelectorHeaderCell.swift */; };
 		B8BA00A6202C9F1D00CC3400 /* UserProfileHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BA00A5202C9F1D00CC3400 /* UserProfileHeaderCell.swift */; };
 		B8D172D4203453BC007B0818 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D172D3203453BB007B0818 /* Models.swift */; };
 /* End PBXBuildFile section */
@@ -40,6 +41,7 @@
 		B8349892201FC71900268F0F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B8521F9C203BAC2E00BE5413 /* PhotoSelectorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorVC.swift; sourceTree = "<group>"; };
 		B8A2C6AF20405DBD001A8A05 /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
+		B8A2C6B1204102FD001A8A05 /* PhotoSelectorHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorHeaderCell.swift; sourceTree = "<group>"; };
 		B8BA00A5202C9F1D00CC3400 /* UserProfileHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeaderCell.swift; sourceTree = "<group>"; };
 		B8D172D3203453BB007B0818 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -123,6 +125,7 @@
 			children = (
 				B8521F9C203BAC2E00BE5413 /* PhotoSelectorVC.swift */,
 				B8A2C6AF20405DBD001A8A05 /* PhotoSelectorCell.swift */,
+				B8A2C6B1204102FD001A8A05 /* PhotoSelectorHeaderCell.swift */,
 			);
 			path = PhotoSelector;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 				B8521F9D203BAC2E00BE5413 /* PhotoSelectorVC.swift in Sources */,
 				B8349878201F835F00268F0F /* AppDelegate.swift in Sources */,
 				B8349891201FBDAF00268F0F /* UserProfileVC.swift in Sources */,
+				B8A2C6B2204102FD001A8A05 /* PhotoSelectorHeaderCell.swift in Sources */,
 				B8D172D4203453BC007B0818 /* Models.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -13,7 +13,10 @@ class PhotoSelectorVC: UICollectionViewController, UICollectionViewDelegateFlowL
     
     let cellId = "cellId"
     let headerId = "headerId"
+    
     var images = [UIImage]()
+    var assets = [PHAsset]()
+    var selectedImageIndex = 0
     
     func registerCells () {
         
@@ -21,7 +24,7 @@ class PhotoSelectorVC: UICollectionViewController, UICollectionViewDelegateFlowL
         
         //header
         
-        collectionView?.register(UICollectionViewCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerId)
+        collectionView?.register(PhotoSelectorHeaderCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerId)
     }
     
     fileprivate func setupCancelAndNextButtons () {
@@ -43,7 +46,7 @@ class PhotoSelectorVC: UICollectionViewController, UICollectionViewDelegateFlowL
         print("fetching photos")
         
         let fetchOptions = PHFetchOptions()
-        fetchOptions.fetchLimit = 10
+        fetchOptions.fetchLimit = 30
         
         //setting order of images
         let sortDescriptors = NSSortDescriptor(key: "creationDate", ascending: false)
@@ -57,7 +60,7 @@ class PhotoSelectorVC: UICollectionViewController, UICollectionViewDelegateFlowL
             
             let imageManager = PHImageManager()
             
-            let targetSize = CGSize(width: 200, height: 200)
+            let targetSize = CGSize(width: 600, height: 600)
             
             //load images in order
             
@@ -68,14 +71,18 @@ class PhotoSelectorVC: UICollectionViewController, UICollectionViewDelegateFlowL
                 if let image = image {
                     
                     self.images.append(image)
+                    self.assets.append(asset)
                     
                 }
                 
             })
             
+            
+            
         }//end enumerate objects
         
-        print(self.images.count)
+        
+        
     }//end fetchPhotos
     
     override func viewDidLoad() {
@@ -98,7 +105,7 @@ class PhotoSelectorVC: UICollectionViewController, UICollectionViewDelegateFlowL
     
     
     
-}
+}//End PhotoSelectorVC
 
 
 
@@ -109,8 +116,11 @@ extension PhotoSelectorVC {
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath)
-        header.backgroundColor = .green
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! PhotoSelectorHeaderCell
+       
+        header.imageView.image = self.images[selectedImageIndex]
+        
+        
         return header
         
     }
@@ -159,6 +169,13 @@ extension PhotoSelectorVC {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 2, left: 0, bottom: 0, right: 0)
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.selectedImageIndex = indexPath.item
+        let indexPath = IndexPath(item: 0, section: 0)
+        collectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
+        collectionView.reloadData()
     }
     
     
